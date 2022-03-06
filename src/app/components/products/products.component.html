@@ -1,0 +1,67 @@
+<nav class="navbar navbar-expand-sm bg-light navbar-light" xmlns="http://www.w3.org/1999/html">
+  <ul class="navbar navbar-nav">
+    <li>
+      <button (click)="onGetAllProducts()" type="button" class="btn btn-sm btn-info m-2">All</button>
+    </li>
+    <li>
+      <button (click)="onSelectedAllProducts()" type="button" class="btn btn-sm btn-info m-2">Selected</button>
+    </li>
+    <li>
+      <button (click)="onAvailableAllProducts()" type="button" class="btn btn-sm btn-info m-2">Available</button>
+    </li>
+    <li>
+      <button (click)="onNewProducts()" type="button" class="btn btn-sm btn-info m-2">New product</button>
+    </li>
+
+  </ul>
+
+  <ul class="navbar navbar-nav m-2 ">
+    <li>
+      <form #f="ngForm" (ngSubmit)="onSearch(f.value)" class="form-check-inline">
+
+          <input ngModel name="keyword"  type="text">
+          <button class="btn btn-sm btn-outline-info m-1">
+            <span class="fa fa-search"></span>
+          </button>
+
+      </form>
+    </li>
+
+  </ul>
+
+
+</nav>
+<div class="container" *ngIf="products$">  <!--si les produits sont chargés, les affichées sous forme de table -->
+  <table class="table">
+    <tr>
+      <th>ID</th><th>Name</th><th>Price</th><th>Quantity</th><th>Selected</th><th>Available</th><th>Want to select?</th><th>Want to delete?</th>
+    </tr>
+    <tr *ngFor="let p of products$ | async"> <!--La directive structurelle ngFor permet de boucler sur un array et d'injecter les éléments dans le DOM -->
+      <td>{{p.id}}</td>             <!--pipe pur faire subscriber:  surveiller un observable pour attendre les données -->
+      <td>{{p.name}}</td>
+      <td>{{p.price}}</td>
+      <td>{{p.quantity}}</td>
+      <td>{{p.selected}}</td>
+      <td>{{p.available}}</td>
+      <td>
+          <button (click)="onSelect(p)" [ngClass]="p.selected?'btn-success':'btn-outline-danger'" type="button" class="btn btn-outline-success">
+          <span *ngIf="p.selected">Unselect</span>
+          <span *ngIf="!p.selected">Select</span>
+        </button>
+      </td>
+      <td>
+        <button (click)="onDelete(p)"    type="button" class="fa fa-trash" style="color:red" >
+
+        </button>
+      </td>
+
+      <td>
+        <button (click)="onUpdate(p)"    type="button" class="fa fa-edit" style="color:yellowgreen" >
+
+        </button>
+      </td>
+
+
+    </tr>
+  </table>
+</div>

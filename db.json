@@ -1,0 +1,36 @@
+{
+  "Products": [
+    {
+      "id": 4,
+      "name": "Casque ",
+      "price": 150,
+      "quantity": 200,
+      "selected": false,
+      "available": true
+    },
+    {
+      "id": 1,
+      "name": "Computer",
+      "price": 12000,
+      "quantity": 6,
+      "selected": true,
+      "available": true
+    },
+    {
+      "id": 2,
+      "name": "Cage-tlf",
+      "price": 100,
+      "quantity": 600,
+      "selected": false,
+      "available": true
+    },
+    {
+      "id": 6,
+      "name": "rfifa",
+      "price": 0,
+      "quantity": 0,
+      "selected": true,
+      "available": true
+    }
+  ]
+}
